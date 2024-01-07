@@ -9,6 +9,9 @@ public class RandGun : MonoBehaviour
     void Start()
     {
         weapons = GetComponentInChildren<WeaponList>();
+
+        //weapons=GameObject.Find("WeaponHolder").GetComponent<WeaponList>(); //üsttekini Aynýsý farklý yöntem
+        
     }
 
     // Update is called once per frame
