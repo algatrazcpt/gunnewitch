@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Random
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - gun
   - Water
   - UI
   - 
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: witch
+    uniqueID: 1176700745
+    locked: 0
+  - name: gun
+    uniqueID: 60915139
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 2545019041
     locked: 0
