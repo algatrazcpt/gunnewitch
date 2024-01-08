@@ -24,7 +24,7 @@ public class NormalGun : MonoBehaviour
     void Update()
     {
 
-
+        //Input.GetMouseButton(0)
         if (Input.GetMouseButtonDown(0))
         {
 

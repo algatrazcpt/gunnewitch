@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8053920427282944971}
   - component: {fileID: 8621486053713124473}
   - component: {fileID: 1150009886732770846}
+  - component: {fileID: 8031410574847104171}
   m_Layer: 0
   m_Name: mermi
   m_TagString: Untagged
@@ -104,5 +105,21 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!58 &8031410574847104171
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110616662224574008}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.014999999

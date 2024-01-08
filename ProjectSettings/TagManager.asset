@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Random
+  - Enemy
+  - flamepart
   layers:
   - Default
   - TransparentFX
