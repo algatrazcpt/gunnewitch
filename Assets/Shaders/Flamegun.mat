@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_GlowEffect 2
+  m_Name: Flamegun
   m_Shader: {fileID: -6465566751694194690, guid: 3e88e319fdd452b42b229376827c7035, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -43,5 +43,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 78.38086, g: 0, b: 0, a: 0}
+    - _Color: {r: 88.74579, g: 13.814204, b: 13.814204, a: 0}
   m_BuildTextureStacks: []
