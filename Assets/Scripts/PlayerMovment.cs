@@ -11,6 +11,7 @@ public class PlayerMovment : MonoBehaviour
     public Transform weapon;
     public float offset;
     public SpriteRenderer sp;
+    
 
    public bool faceRight = true;
     // Start is called before the first frame update
@@ -49,7 +50,7 @@ public class PlayerMovment : MonoBehaviour
         if (moveDir.x > 0 && !faceRight)
         {
             
-            //filipWeapon();
+            filipWeapon();
             filipWitch();
             //sp.flipX = true;
 
@@ -58,7 +59,7 @@ public class PlayerMovment : MonoBehaviour
         }
        else if (moveDir.x < 0 && faceRight)
         {
-           //filipWeapon();
+           filipWeapon();
            filipWitch();
            
 
@@ -93,9 +94,9 @@ public class PlayerMovment : MonoBehaviour
     {
 
         //Vector3 scaleWeapon = weapon.transform.localScale;
-        Vector3 displayWeapon =( Camera.main.ScreenToWorldPoint(Input.mousePosition)- weapon.position);
+        Vector3 displayWeapon = weapon.position - ( Camera.main.ScreenToWorldPoint(Input.mousePosition));
         float angles = Mathf.Atan2(displayWeapon.y, displayWeapon.x) * Mathf.Rad2Deg;
-        weapon.rotation = Quaternion.Euler(0f, 0f, angles);
+        weapon.rotation = Quaternion.Euler(0f, 0f, angles+ offset);
         Vector3 localScales = weapon.transform.localScale;
         if (faceRight ==false)
         {
@@ -114,14 +115,14 @@ public class PlayerMovment : MonoBehaviour
         //Debug.Log(localScales);
         if(angles>90 || angles < -90)
         {
-            localScales.y = -1f;
+            localScales.y = 1f;
             
 
 
         }
         else
         {
-            localScales.y = 1f;
+            localScales.y = -1f;
             
 
 
