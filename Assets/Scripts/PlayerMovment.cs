@@ -11,6 +11,7 @@ public class PlayerMovment : MonoBehaviour
     public Transform weapon;
     public float offset;
     public SpriteRenderer sp;
+    public float Health;
     
 
    public bool faceRight = true;
@@ -21,6 +22,12 @@ public class PlayerMovment : MonoBehaviour
         sp=GetComponent<SpriteRenderer>();
     }
 
+
+    public void TakeDamage(float damage)
+    {
+        Health -= damage;
+
+    }
     // Update is called once per frame
     void Update()
     {

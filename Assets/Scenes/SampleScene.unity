@@ -5696,11 +5696,11 @@ GameObject:
   - component: {fileID: 868300851}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &868300848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5714,6 +5714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1313932100}
+  attackTime: 10
 --- !u!212 &868300849
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6367,6 +6368,7 @@ MonoBehaviour:
   weapon: {fileID: 684834378}
   offset: 180
   sp: {fileID: 0}
+  Health: 80
   faceRight: 1
 --- !u!114 &1313932104
 MonoBehaviour:
