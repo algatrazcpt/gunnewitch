@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8621486053713124473}
   - component: {fileID: 1150009886732770846}
   - component: {fileID: 8031410574847104171}
+  - component: {fileID: 1488863540906139553}
   m_Layer: 0
   m_Name: mermi
   m_TagString: Untagged
@@ -123,3 +124,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.014999999
+--- !u!114 &1488863540906139553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110616662224574008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a941ac7314d624183fc87606ecd319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
