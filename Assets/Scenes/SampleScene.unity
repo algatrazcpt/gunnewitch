@@ -5629,7 +5629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684834377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.009, y: -0.138, z: 0}
+  m_LocalPosition: {x: 0.009, y: 0.222, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11225,6 +11225,8 @@ GameObject:
   - component: {fileID: 1313932103}
   - component: {fileID: 1313932102}
   - component: {fileID: 1313932101}
+  - component: {fileID: 1313932105}
+  - component: {fileID: 1313932106}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Player
@@ -11334,10 +11336,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.01147747, y: 0.29459047}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.58, y: 0.6}
     newSize: {x: 0.58, y: 0.6}
     adaptiveTilingThreshold: 0.5
@@ -11345,7 +11347,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.58, y: 0.6}
+  m_Size: {x: 0.6335621, y: 0.6229553}
   m_EdgeRadius: 0
 --- !u!114 &1313932103
 MonoBehaviour:
@@ -11378,6 +11380,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: {fileID: 0}
+--- !u!95 &1313932105
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313932098}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6276e3378423a3d49957c65388d96a67, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1313932106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313932098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230aa36aa671b8f46840b376ae154528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anims: {fileID: 1313932105}
+  weaponHolder: {fileID: 684834377}
 --- !u!1 &1423018479
 GameObject:
   m_ObjectHideFlags: 0
