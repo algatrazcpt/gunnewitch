@@ -15,7 +15,8 @@ public class BulletDamage : MonoBehaviour
         if(collision.transform.CompareTag("Enemy"))
         {
             getPoper.GetObjectFromPool().GetComponent<DamagePop>().DamageCreate(transform.position,damage);
-            Destroy(gameObject);
+            collision.GetComponent<BasicEnemyMovement>().EnemyTakeDamage(damage);
+            gameObject.SetActive(false);
         }
     }
 }

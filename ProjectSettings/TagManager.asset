@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - flamepart
   - flamegun
+  - EnemyAttack
+  - Wall
   layers:
   - Default
   - TransparentFX

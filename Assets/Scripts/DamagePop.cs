@@ -9,6 +9,7 @@ public class DamagePop : MonoBehaviour
     public float closeTime;
     public void DamageCreate(Vector3 currentPos, float currentDamage)
     {
+        cText.color = Color.white;
         gameObject.SetActive(true);
         cText.text = currentDamage.ToString();
         transform.position = currentPos;
@@ -27,6 +28,9 @@ public class DamagePop : MonoBehaviour
 
         gameObject.SetActive(false); // Objeyi havuza geri döndür
     }
-
+    public void DamageColor(Color clr)
+    {
+        cText.color = clr;
+    }
 
 }

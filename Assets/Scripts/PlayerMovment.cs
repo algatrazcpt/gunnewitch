@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovment : MonoBehaviour
 {
+    public PopController popController;
+
+    public CinemachineVirtualCamera virtualCamera;
+     CinemachineBasicMultiChannelPerlin noise;
+
+
 
     public float moveSpeed;
     Rigidbody2D rb;
@@ -15,9 +22,24 @@ public class PlayerMovment : MonoBehaviour
     
 
    public bool faceRight = true;
+
+
+
+
+
+
+    private void Awake()
+    {
+        noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        popController = PopController.instance;
+
         rb = GetComponent<Rigidbody2D>();
         sp=GetComponent<SpriteRenderer>();
     }
@@ -26,6 +48,10 @@ public class PlayerMovment : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Health -= damage;
+        DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
+        currentPop.DamageCreate(transform.position,damage);
+        currentPop.DamageColor(Color.red);
+        Shake(1,0.1f);
 
     }
     // Update is called once per frame
@@ -147,7 +173,25 @@ public class PlayerMovment : MonoBehaviour
         //    scaleWeapon.x = 1;
         //    weapon.transform.localScale = scaleWeapon;
         //}
-
-
     }
+
+
+    public void Shake(float intensity, float duration)
+    {
+        StartCoroutine(ShakeCoroutine(intensity, duration));
+    }
+
+    private IEnumerator ShakeCoroutine(float intensity, float duration)
+    {
+        noise.m_AmplitudeGain = intensity;
+
+        yield return new WaitForSeconds(duration);
+
+        noise.m_AmplitudeGain = 0f;
+    }
+
+
+
+
+
 }
