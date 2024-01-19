@@ -27,7 +27,7 @@ public class RandGun : MonoBehaviour
         if (hittingObj.CompareTag("Random"))
         {
             weapons.currentWeapon.SetActive(false);
-            int rand = Random.Range(0, 2);
+            int rand = Random.Range(0, 3);
             weapons.Weapon[rand].SetActive(true);
             weapons.currentWeapon = weapons.Weapon[rand];
             Debug.Log(rand);

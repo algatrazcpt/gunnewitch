@@ -10,6 +10,7 @@ public class EnemyAttack : MonoBehaviour
     public GameObject boomEffect;
     Rigidbody2D rg;
     Vector2 direction;
+    
      void Awake()
     {
         rg= GetComponent<Rigidbody2D>();
@@ -52,6 +53,7 @@ public class EnemyAttack : MonoBehaviour
         {
             Attack(collision.GetComponent<PlayerMovment>());
             BulletDestroy();
+
 
         }
         else if(collision.CompareTag("Wall"))

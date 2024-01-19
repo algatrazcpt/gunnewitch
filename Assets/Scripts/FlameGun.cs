@@ -9,6 +9,7 @@ public class FlameGun : MonoBehaviour
     public GameObject flameRange;
     public GameObject flame;
     public ParticleSystem flamepart;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,8 @@ public class FlameGun : MonoBehaviour
             flame.SetActive(true);
             flamepart.Play();
 
+
+
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -33,6 +36,10 @@ public class FlameGun : MonoBehaviour
             flame.SetActive(false);
 
         }
+
+        
     }
-    
+
+   
+
 }
