@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeaponList : MonoBehaviour
 {
-
     int weaponmax =1;
     public int currentWeaponIndex;
     public GameObject[] Weapon;
@@ -22,17 +21,8 @@ public class WeaponList : MonoBehaviour
 
 
         }
-
         Weapon[0].SetActive(true);
         currentWeapon = Weapon[0];
         currentWeaponIndex = 0;
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

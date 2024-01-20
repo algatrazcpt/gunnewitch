@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_GlowEffect 1
+  m_Name: KazanMat
   m_Shader: {fileID: -6465566751694194690, guid: 3e88e319fdd452b42b229376827c7035, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -43,5 +43,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 2.433572, g: 0.15289457, b: 0, a: 0.003921569}
+    - _Color: {r: 0.1882353, g: 1.6156863, b: 0, a: 0}
   m_BuildTextureStacks: []

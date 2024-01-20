@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_GlowEffect
-  m_Shader: {fileID: -6465566751694194690, guid: 3e88e319fdd452b42b229376827c7035, type: 3}
+  m_Name: PotGlowRed
+  m_Shader: {fileID: -6465566751694194690, guid: b79b78eb6a0a146488901d22c1ff0e44, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -41,7 +41,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _FlashCount: 0
     m_Colors:
-    - _Color: {r: 0.1882353, g: 1.6156863, b: 0, a: 0}
+    - _Color: {r: 1.5450981, g: 0.11764706, b: 0, a: 0}
   m_BuildTextureStacks: []

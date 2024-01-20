@@ -39,7 +39,6 @@ public class PopController : MonoBehaviour
                 return objectPool[i];
             }
         }
-        Debug.Log(gameObject.transform.name);
          
         // Havuzdaki tüm nesneler etkinse, yeni bir nesne oluþtur
         GameObject newObj = Instantiate(prefab);

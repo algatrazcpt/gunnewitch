@@ -13,24 +13,10 @@ public class RandGun : MonoBehaviour
         //weapons=GameObject.Find("WeaponHolder").GetComponent<WeaponList>(); //üsttekini Aynýsý farklý yöntem
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void setWeapon(int id)
     {
-        
+        weapons.currentWeapon.SetActive(false);
+        weapons.Weapon[id].SetActive(true);
+        weapons.currentWeapon = weapons.Weapon[id];
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject hittingObj = collision.gameObject;
-
-        if (hittingObj.CompareTag("Random"))
-        {
-            weapons.currentWeapon.SetActive(false);
-            int rand = Random.Range(0, 3);
-            weapons.Weapon[rand].SetActive(true);
-            weapons.currentWeapon = weapons.Weapon[rand];
-            Debug.Log(rand);
-        }
-    }   
 }

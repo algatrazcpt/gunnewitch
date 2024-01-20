@@ -18,6 +18,8 @@ public class BasicEnemyMovement : MonoBehaviour
     public float meleeDamage=10;
     private bool canAttack = true; // Ateþ etmeye hazýr mý?
     public float health = 100f;
+    public float enemySpeelExp = 1f;
+
     float currentHealth;
     Material cMaterial;
     EnemyAttackPoolController enemyAttackPoolController;
@@ -43,7 +45,6 @@ public class BasicEnemyMovement : MonoBehaviour
                 {
                     StartCoroutine("AttackRate");
                 }
-                Debug.Log("yan yana");
                 rg.velocity = Vector2.zero;
             }
             else
@@ -71,7 +72,6 @@ public class BasicEnemyMovement : MonoBehaviour
      void attack()
     {
         cAttack = enemyAttackPoolController.GetObjectFromPool().GetComponent<EnemyAttack>();
-        Debug.Log(cAttack.name);
         cAttack.AttackCreate(transform.position,playerTransform.position);
 
     }
@@ -107,6 +107,7 @@ public class BasicEnemyMovement : MonoBehaviour
     }
     void EnemyDeath()
     {
+        playerTransform.GetComponent<PlayerMovment>().TakeSpeelDamage(enemySpeelExp);
         gameObject.SetActive(false);
         ResetSystem();
     }
@@ -127,6 +128,9 @@ public class BasicEnemyMovement : MonoBehaviour
 
         
     }
+
+
+
     public void ResetSystem()
     {
         transform.position = Vector3.zero;

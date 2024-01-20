@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using UnityEngine.UI;
 public class PlayerMovment : MonoBehaviour
 {
     public PopController popController;
 
     public CinemachineVirtualCamera virtualCamera;
-     CinemachineBasicMultiChannelPerlin noise;
+    CinemachineBasicMultiChannelPerlin noise;
 
-
+    public Image healthBar;
+    public Image speelBar;
+    public float speelCount;
+    float currentSpeelCount;
 
     public float moveSpeed;
     Rigidbody2D rb;
@@ -19,9 +22,8 @@ public class PlayerMovment : MonoBehaviour
     public float offset;
     public SpriteRenderer sp;
     public float Health;
-    
-
-   public bool faceRight = true;
+    float currentHealt;
+    public bool faceRight = true;
 
 
 
@@ -30,7 +32,11 @@ public class PlayerMovment : MonoBehaviour
 
     private void Awake()
     {
+        currentHealt = Health;
+        currentSpeelCount = 0;
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        HealthUi();
+        SpeelUi();
     }
 
 
@@ -44,20 +50,42 @@ public class PlayerMovment : MonoBehaviour
         sp=GetComponent<SpriteRenderer>();
     }
 
+    void HealthUi()
+    {
+        healthBar.fillAmount = currentHealt / Health;
+        
+    }
+    void SpeelUi()
+    {
+        speelBar.fillAmount = currentSpeelCount / speelCount;
+    }
+
+
 
     public void TakeDamage(float damage)
     {
-        Health -= damage;
+        currentHealt = Mathf.Clamp(currentHealt-damage,0,Health);
         DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
-        currentPop.DamageCreate(transform.position,damage);
-        currentPop.DamageColor(Color.red);
+        if (damage <= 0)
+        {
+            currentPop.DamageCreate(transform.position, damage*-1);
+            currentPop.DamageColor(Color.green);
+        }
+        else
+        {
+            currentPop.DamageCreate(transform.position, damage );
+            currentPop.DamageColor(Color.red);
+        }
+
         Shake(1,0.1f);
+        HealthUi();
 
     }
     // Update is called once per frame
     void Update()
     {
         InputManager();
+        KeyManager();
         weaponRotate();
     }
     private void FixedUpdate()
@@ -75,6 +103,27 @@ public class PlayerMovment : MonoBehaviour
 
     }
 
+    void KeyManager()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            InteractItem(InteractId);
+        }
+    }
+
+
+
+    public void TakeSpeelDamage(float damage)
+    {
+        currentSpeelCount = Mathf.Clamp(currentSpeelCount + damage, 0, speelCount);
+        DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
+        if (damage <= 0)
+        {
+            currentPop.DamageCreate(transform.position, damage * -1);
+            currentPop.DamageColor(Color.blue);
+        }
+        SpeelUi();
+    }
     void move()
     {
 
@@ -117,9 +166,6 @@ public class PlayerMovment : MonoBehaviour
 
         scale.x *= -1;
         weapon.transform.localScale = scale;
-        
-
-
 
     }
   
@@ -133,7 +179,6 @@ public class PlayerMovment : MonoBehaviour
         Vector3 localScales = weapon.transform.localScale;
         if (faceRight ==false)
         {
-            Debug.Log("False girdi");
             
             localScales.x = -1f;
         }
@@ -161,18 +206,7 @@ public class PlayerMovment : MonoBehaviour
 
         }
         weapon.transform.localScale = localScales;
-            
 
-        //if (gameObject.transform.localScale.x<0)
-        //{
-        //    scaleWeapon.x = -1;
-        //    weapon.transform.localScale = scaleWeapon;
-        //}
-        //else if (gameObject.transform.localScale.x > 0)
-        //{
-        //    scaleWeapon.x = 1;
-        //    weapon.transform.localScale = scaleWeapon;
-        //}
     }
 
 
@@ -190,8 +224,44 @@ public class PlayerMovment : MonoBehaviour
         noise.m_AmplitudeGain = 0f;
     }
 
+    public int InteractId=-1;
+    public GameObject currentInteractItem;
 
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Random"))
+        {
+            currentInteractItem = collision.gameObject;
+            InteractId = collision.gameObject.GetComponent<KazanController>().GetRandomItem();
+        }
+        else if (collision.transform.CompareTag("Consumable"))
+        {
+            Debug.Log("Ýtem Consumbale");
+            currentInteractItem = collision.gameObject;
+            InteractId = 3;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        currentInteractItem = null;
+        InteractId = -1;
+    }
+    void InteractItem(int id)
+    {
+        if(id!=-1 &&id<2)
+        {
+                currentInteractItem.GetComponent<KazanController>().PlayerKazanDestroy();
+                GetComponent<RandGun>().setWeapon(id);
+                InteractId = -1;
+                currentInteractItem = null;
+        }
+        else if (currentInteractItem!=null)
+        {
+            currentInteractItem.GetComponent<KazanController>().PlayerKazanDestroy();
+            InteractId = -1;
+            currentInteractItem = null;
+        }
+    }
 
 }
