@@ -25,9 +25,10 @@ public class PlayerMovment : MonoBehaviour
     float currentHealt;
     public bool faceRight = true;
 
+    public GameObject customUi;
 
-
-
+    public int InteractId = -1;
+    public GameObject currentInteractItem;
 
 
     private void Awake()
@@ -115,7 +116,7 @@ public class PlayerMovment : MonoBehaviour
 
     public void TakeSpeelDamage(float damage)
     {
-        currentSpeelCount = Mathf.Clamp(currentSpeelCount + damage, 0, speelCount);
+        currentSpeelCount = Mathf.Clamp(currentSpeelCount - damage, 0, speelCount);
         DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
         if (damage <= 0)
         {
@@ -224,14 +225,14 @@ public class PlayerMovment : MonoBehaviour
         noise.m_AmplitudeGain = 0f;
     }
 
-    public int InteractId=-1;
-    public GameObject currentInteractItem;
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag("Random"))
         {
+            customUi.SetActive(true);
             currentInteractItem = collision.gameObject;
             InteractId = collision.gameObject.GetComponent<KazanController>().GetRandomItem();
         }
@@ -240,16 +241,18 @@ public class PlayerMovment : MonoBehaviour
             Debug.Log("Ýtem Consumbale");
             currentInteractItem = collision.gameObject;
             InteractId = 3;
+            customUi.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         currentInteractItem = null;
         InteractId = -1;
+        customUi.SetActive(false);
     }
     void InteractItem(int id)
     {
-        if(id!=-1 &&id<2)
+        if(id!=-1 &&id<3)
         {
                 currentInteractItem.GetComponent<KazanController>().PlayerKazanDestroy();
                 GetComponent<RandGun>().setWeapon(id);
@@ -258,10 +261,30 @@ public class PlayerMovment : MonoBehaviour
         }
         else if (currentInteractItem!=null)
         {
-            currentInteractItem.GetComponent<KazanController>().PlayerKazanDestroy();
-            InteractId = -1;
-            currentInteractItem = null;
+            if (currentInteractItem.transform.CompareTag("Random"))
+            {
+                currentInteractItem.GetComponent<KazanController>().PlayerKazanDestroy();
+                InteractId = -1;
+                currentInteractItem = null;
+            }
+            else
+            {
+                float cHealth= currentInteractItem.GetComponent<ItemControl>().healt;
+                float cSpeel= currentInteractItem.GetComponent<ItemControl>().speel;
+                if(cHealth>0)
+                {
+                    TakeDamage(-cHealth);
+                }
+                if(cSpeel>0)
+                {
+                    TakeSpeelDamage(-cSpeel);
+                }
+                currentInteractItem.GetComponent<ItemControl>().Delete();
+                InteractId = -1;
+                currentInteractItem = null;
+            }
         }
+
     }
 
 }

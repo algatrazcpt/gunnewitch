@@ -26,7 +26,6 @@ public class KazanController : MonoBehaviour
             }
             animator.SetTrigger("Idle");
         }
-        Debug.Log("assetr");
     }
     IEnumerator KazanDestroy()
     {

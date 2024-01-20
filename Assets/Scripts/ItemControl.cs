@@ -23,8 +23,9 @@ public class ItemControl : MonoBehaviour
     }
 
 
-    void Delete()
+    public void Delete()
     {
+        CancelInvoke("Delete");
         Destroy(gameObject);
     }
 }

@@ -9,10 +9,11 @@ public class DamagePop : MonoBehaviour
     public float closeTime;
     public void DamageCreate(Vector3 currentPos, float currentDamage)
     {
+        Vector3 currentRandom = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 0);
         cText.color = Color.white;
         gameObject.SetActive(true);
         cText.text = currentDamage.ToString();
-        transform.position = currentPos;
+        transform.position = currentPos+ currentRandom;
         StartCoroutine(MoveObjectAndReturnToPool(closeTime));
     }
     IEnumerator MoveObjectAndReturnToPool(float duration)

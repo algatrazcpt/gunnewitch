@@ -8,31 +8,22 @@ public class WitchAnimationControl : MonoBehaviour
     public Animator anims;
     AnimatorStateInfo animStateInfo;
     public GameObject weaponHolder;
-    void Start()
-    {
-        
-    }
-
-    
+    bool rageAnim = true;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&rageAnim)
         {
-            weaponHolder.GetComponent<WeaponList>().currentWeapon.SetActive(false);
             anims.Play("Witch_range");
-            
-
-
-
-
+            StartCoroutine("WitchAnim");
 
         }
-        if(anims.GetCurrentAnimatorStateInfo(0).normalizedTime>0.9)
-        {
-            weaponHolder.GetComponent<WeaponList>().currentWeapon.SetActive(true);
-            anims.Play("New State");
-            
-
-        }
+    }
+    IEnumerator WitchAnim()
+    {
+        rageAnim = false;
+        weaponHolder.GetComponent<WeaponList>().currentWeapon.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        weaponHolder.GetComponent<WeaponList>().currentWeapon.SetActive(true);
+        rageAnim = true;
     }
 }

@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &82762769
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6854,7 +6854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &885299287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7634,7 +7634,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7754,6 +7754,7 @@ MonoBehaviour:
   sp: {fileID: 0}
   Health: 80
   faceRight: 1
+  customUi: {fileID: 82762768}
   InteractId: -1
   currentInteractItem: {fileID: 0}
 --- !u!114 &1313932104
@@ -7914,6 +7915,114 @@ PrefabInstance:
     - target: {fileID: 2443386508292529266, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
       propertyPath: m_Name
       value: AttackEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_RenderMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30f0fcc979dc5e3418f6fca5f99a4f4d, type: 2}
+    - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30f0fcc979dc5e3418f6fca5f99a4f4d, type: 2}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: UVModule.mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: UVModule.tilesX
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: TrailModule.mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: UVModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: TrailModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: TrailModule.ribbonCount
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: TrailModule.textureMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 1270038668, guid: 5999a3bdb872a304a80b00a8cd3abce5, type: 3}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime0
+      value: 771
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 65150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.6226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.17176297
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894571058724802274, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6873825056250224768, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
       propertyPath: m_RootOrder
@@ -8519,7 +8628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1999403434
 Animator:
   serializedVersion: 4
