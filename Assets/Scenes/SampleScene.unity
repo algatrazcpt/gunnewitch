@@ -7744,6 +7744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popController: {fileID: 0}
+  yurumeKontrol: 0
   virtualCamera: {fileID: 1453224192}
   healthBar: {fileID: 336418657}
   speelBar: {fileID: 1543203724}
@@ -7757,6 +7758,7 @@ MonoBehaviour:
   customUi: {fileID: 82762768}
   InteractId: -1
   currentInteractItem: {fileID: 0}
+  anims: {fileID: 1313932105}
 --- !u!114 &1313932104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7799,11 +7801,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1313932098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 230aa36aa671b8f46840b376ae154528, type: 3}
+  m_Script: {fileID: 11500000, guid: 6319fd46dd4eb1f4a8e1a1262fcc1460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anims: {fileID: 1313932105}
-  weaponHolder: {fileID: 684834377}
+  range: 0
+  alanaGirenler: []
 --- !u!1 &1408740913
 GameObject:
   m_ObjectHideFlags: 0
@@ -8628,7 +8630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &1999403434
 Animator:
   serializedVersion: 4

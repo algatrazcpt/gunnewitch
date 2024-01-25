@@ -7,6 +7,8 @@ public class PlayerMovment : MonoBehaviour
 {
     public PopController popController;
 
+    public bool yurumeKontrol = false;
+
     public CinemachineVirtualCamera virtualCamera;
     CinemachineBasicMultiChannelPerlin noise;
 
@@ -30,6 +32,13 @@ public class PlayerMovment : MonoBehaviour
     public int InteractId = -1;
     public GameObject currentInteractItem;
 
+    public Animator anims;
+
+    bool rageAnim = true;
+
+
+    RangePower rangeSaldýr;
+
 
     private void Awake()
     {
@@ -38,6 +47,7 @@ public class PlayerMovment : MonoBehaviour
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         HealthUi();
         SpeelUi();
+        
     }
 
 
@@ -49,6 +59,8 @@ public class PlayerMovment : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         sp=GetComponent<SpriteRenderer>();
+        anims = GetComponent<Animator>();
+        rangeSaldýr = GetComponent<RangePower>();
     }
 
     void HealthUi()
@@ -82,12 +94,62 @@ public class PlayerMovment : MonoBehaviour
         HealthUi();
 
     }
+
+    IEnumerator WitchAnim()
+    {
+        rageAnim = false;
+        weapon.GetComponent<WeaponList>().currentWeapon.SetActive(false);
+        yield return new WaitForSeconds(0.8f);
+        weapon.GetComponent<WeaponList>().currentWeapon.SetActive(true);
+        rageAnim = true;
+    }
+
+    IEnumerator RangeSalsýrýtime()
+    {
+        rageAnim = false;
+        rangeSaldýr.range = 3f;
+        rangeSaldýr.alaniçiObjebul();
+        foreach(GameObject enmy in rangeSaldýr.alanaGirenler)
+        {
+            enmy.GetComponent<EnemyAttack>().attackMoveSpeed = 0;
+        }
+        yield return new WaitForSeconds(5f);
+        rangeSaldýr.range = 0f;
+        foreach (GameObject enmy in rangeSaldýr.alanaGirenler)
+        {
+            enmy.GetComponent<EnemyAttack>().attackMoveSpeed = 6;
+        }
+        rangeSaldýr.alantemizle();
+        rageAnim = true;
+
+
+    }
+
     // Update is called once per frame
     void Update()
     {
         InputManager();
         KeyManager();
         weaponRotate();
+
+        if (yurumeKontrol == true)
+        {
+            anims.SetBool("yuruyor", true);
+        }
+        else if (yurumeKontrol == false)
+        {
+            anims.SetBool("yuruyor", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && rageAnim)
+        {
+            anims.SetTrigger("range");
+            StartCoroutine("WitchAnim");
+            StartCoroutine("RangeSalsýrýtime");
+
+
+
+        }
     }
     private void FixedUpdate()
     {
@@ -101,7 +163,14 @@ public class PlayerMovment : MonoBehaviour
 
         moveDir = new Vector2(moveX, moveY).normalized;
 
-
+        if(moveX!=0.0f || moveY != 0.0f)
+        {
+            yurumeKontrol = true;
+        }
+        else
+        {
+            yurumeKontrol = false;
+        }
     }
 
     void KeyManager()
@@ -130,21 +199,24 @@ public class PlayerMovment : MonoBehaviour
 
         rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
 
-        if (moveDir.x > 0 && !faceRight)
+        if (moveDir.x < 0 && !faceRight)
         {
             
-            filipWeapon();
-            filipWitch();
-            //sp.flipX = true;
+            //filipWeapon();
+            //filipWitch();
+            sp.flipX = true;
+            faceRight = !faceRight;
 
 
 
         }
-       else if (moveDir.x < 0 && faceRight)
+       else if (moveDir.x > 0 && faceRight)
         {
-           filipWeapon();
-           filipWitch();
-           
+           //filipWeapon();
+            //filipWitch();
+            sp.flipX = false;
+            faceRight = !faceRight;
+
 
 
         }
@@ -178,19 +250,22 @@ public class PlayerMovment : MonoBehaviour
         float angles = Mathf.Atan2(displayWeapon.y, displayWeapon.x) * Mathf.Rad2Deg;
         weapon.rotation = Quaternion.Euler(0f, 0f, angles+ offset);
         Vector3 localScales = weapon.transform.localScale;
-        if (faceRight ==false)
-        {
-            
-            localScales.x = -1f;
-        }
-        else if (faceRight == true)
-        {
-            localScales.x = 1f;
 
-        }
+
+         // Eski kod yapýsý
+        //if (faceRight ==false)
+        //{
+
+        //    localScales.x = -1f;
+        //}
+        //else if (faceRight == true)
+        //{
+        //    localScales.x = 1f;
+
+        //}
         //weapon.eulerAngles = new Vector3(0, 0, angles);
 
-        
+
         //Debug.Log(localScales);
         if(angles>90 || angles < -90)
         {
