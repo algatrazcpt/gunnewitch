@@ -99,7 +99,7 @@ public class PlayerMovment : MonoBehaviour
     {
         rageAnim = false;
         weapon.GetComponent<WeaponList>().currentWeapon.SetActive(false);
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         weapon.GetComponent<WeaponList>().currentWeapon.SetActive(true);
         rageAnim = true;
     }
@@ -107,11 +107,12 @@ public class PlayerMovment : MonoBehaviour
     IEnumerator RangeSalsýrýtime()
     {
         rageAnim = false;
-        rangeSaldýr.range = 3f;
+        rangeSaldýr.range = 5f;
         rangeSaldýr.alaniçiObjebul();
+        
         foreach(GameObject enmy in rangeSaldýr.alanaGirenler)
         {
-            enmy.GetComponent<EnemyAttack>().attackMoveSpeed = 0;
+            enmy.GetComponent<EnemyAttack>().attackMoveSpeed = 1;
         }
         yield return new WaitForSeconds(5f);
         rangeSaldýr.range = 0f;
