@@ -20,6 +20,12 @@ public class EnemyAttack : MonoBehaviour
         boomEffect.SetActive(false);
         transform.position = defaultPos;
         direction = new Vector2(targetPos.x - defaultPos.x, targetPos.y - defaultPos.y);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // Yatay düzlemde dönme iþlemini saðlamak için rotasyonu belirle
+        Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = targetRotation;
+
+
         gameObject.SetActive(true);
         Invoke("BulletDestroy",10);
     }

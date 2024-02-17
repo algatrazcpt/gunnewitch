@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class BasicEnemyMovement : MonoBehaviour
 {
+    public PopController popController;
     public Transform playerTransform;
     public ParticleSystem meleeParticle;
     Rigidbody2D rg;
@@ -25,6 +26,7 @@ public class BasicEnemyMovement : MonoBehaviour
     EnemyAttackPoolController enemyAttackPoolController;
     void Start()
     {
+        popController = PopController.instance;
         rg = gameObject.GetComponent<Rigidbody2D>();
         enemyAttackPoolController = EnemyAttackPoolController.instance;
         cMaterial =  gameObject.GetComponent<SpriteRenderer>().material;
@@ -103,6 +105,9 @@ public class BasicEnemyMovement : MonoBehaviour
     public void EnemyTakeDamage(float damage)
     {
         currentHealth -= damage;
+        DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
+        currentPop.DamageCreate(transform.position, damage);
+        currentPop.DamageColor(Color.red);
         StartCoroutine("EnemyTakeDamageEffect");
     }
     void EnemyDeath()

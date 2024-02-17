@@ -8,12 +8,11 @@ public class NormalGun : MonoBehaviour
 
     public Transform ShootPoint;
     private Vector3 mausePos;
-    public GameObject Gun;
     public Camera maincam;
     public float shootTime;
     public float force;
     float nextShootTime;
-
+    public PlayerPool playerPool;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +31,16 @@ public class NormalGun : MonoBehaviour
             if (Time.time > nextShootTime){
 
                 nextShootTime = Time.time + shootTime;
-                GameObject bullet= Instantiate(Gun, ShootPoint.position, ShootPoint.rotation);
-                Vector3 direction = mausePos - bullet.transform.position;
-                bullet.GetComponent<Rigidbody2D>().velocity =new Vector2(direction.x, direction.y).normalized* force;
+
+                
+
+               //GameObject bullet= Instantiate(Gun, ShootPoint.position, ShootPoint.rotation);
+                Vector3 direction = mausePos - ShootPoint.localPosition;
+                Debug.Log(ShootPoint.localPosition);
+                playerPool.GetObjectFromPool().GetComponent<BulletDamage>().AttackCreate(ShootPoint.position, mausePos);
+
+
+                //bullet.GetComponent<Rigidbody2D>().velocity =new Vector2(direction.x, direction.y).normalized* force;
                 
             }
 

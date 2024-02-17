@@ -7,29 +7,33 @@ public class asaAttack : MonoBehaviour
 
     public Animator anims;
     public Transform attackPoint;
-    public float MeleAttackRange = .8f;
+    public float MeleAttackRange = 0.8f;
     PopController getPoper;
     public float meleDamage = 5;
+    private bool canAttack=true;
+    private float attackTime=2;
+
     // Start is called before the first frame update
     void Start()
     {
         getPoper = PopController.instance;
         anims.GetComponent<Animator>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-
-            EnemyDetect();
+            if(canAttack)
+            {
+                StartCoroutine("AttackRate");
+            }
         }
     }
 
     public void EnemyDetect()
     {
         anims.SetTrigger("maleAttack");
+        
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(attackPoint.position, MeleAttackRange))
         {
             if (collider.gameObject.CompareTag("Enemy"))
@@ -42,6 +46,15 @@ public class asaAttack : MonoBehaviour
 
 
     }
+    IEnumerator AttackRate()
+    {
+        canAttack = false;
+        EnemyDetect();
+        yield return new WaitForSeconds(1f / attackTime);
+        anims.ResetTrigger("maleAttack");
+        canAttack = true;
+    }
+
 
     private void OnDrawGizmosSelected()
     {
