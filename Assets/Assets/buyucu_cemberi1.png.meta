@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,7 +115,196 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: buyucu_cemberi1_0
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 1
+        width: 53
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35cf8158814cbc245b907d3d76be20a9
+      internalID: 1047124665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_1
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 1
+        width: 53
+        height: 116
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66068db7c86becf4e839d9c27bb998ab
+      internalID: -1531929453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_2
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 86
+        width: 33
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66e57e6885037814facdec05569275bc
+      internalID: 829047544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_3
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 76
+        width: 4
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c38e5e6f5eea3542a1bbe9d592ad819
+      internalID: 1338867915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 87
+        width: 10
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2416f1c542407049a3cf56623b60995
+      internalID: -1141039500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_5
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1
+        width: 53
+        height: 132
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b54d040aaa360548a8ced0d1daf8c5c
+      internalID: 1810674489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_6
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 53
+        height: 40
+      alignment: 9
+      pivot: {x: 0.4927714, y: 0.5135556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f86726a117ff76d4cac52878461c00ab
+      internalID: 480044042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1
+        width: 53
+        height: 39
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23d8fe2ca1722ef47b9b416eb91a3396
+      internalID: 1356908192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buyucu_cemberi1_8
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1
+        width: 53
+        height: 50
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f47ba83518569e47b2506eaba1d5172
+      internalID: -107385002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +315,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      buyucu_cemberi1_5: 1810674489
+      buyucu_cemberi1_1: -1531929453
+      buyucu_cemberi1_0: 1047124665
+      buyucu_cemberi1_2: 829047544
+      buyucu_cemberi1_3: 1338867915
+      buyucu_cemberi1_6: 480044042
+      buyucu_cemberi1_4: -1141039500
+      buyucu_cemberi1_7: 1356908192
+      buyucu_cemberi1_8: -107385002
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

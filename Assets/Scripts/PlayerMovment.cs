@@ -39,6 +39,8 @@ public class PlayerMovment : MonoBehaviour
 
     RangePower rangeSaldýr;
 
+    public GameObject Rangeobj;
+
 
     private void Awake()
     {
@@ -61,6 +63,7 @@ public class PlayerMovment : MonoBehaviour
         sp=GetComponent<SpriteRenderer>();
         anims = GetComponent<Animator>();
         rangeSaldýr = GetComponent<RangePower>();
+
     }
 
     void HealthUi()
@@ -146,7 +149,9 @@ public class PlayerMovment : MonoBehaviour
         {
             anims.SetTrigger("range");
             StartCoroutine("WitchAnim");
-            StartCoroutine("RangeSalsýrýtime");
+            //StartCoroutine("RangeSalsýrýtime");
+            Rangeobj.SetActive(true);
+            Rangeobj.GetComponent<RangeField>().OzelAktifmi = true;
 
 
 
