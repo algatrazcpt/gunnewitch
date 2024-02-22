@@ -223,10 +223,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5338471ee6aa04448827e77901feae65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AsaAlan: {fileID: 4105472926941230910, guid: 9c4e2083492baaf40969ecc4ccd5c465, type: 3}
   anims: {fileID: 42037465}
   attackPoint: {fileID: 486303812}
   MeleAttackRange: 0.4
   meleDamage: 35
+  ishold: 0
+  holtime: 0
+  holdRef: 2
+  refAsaAlan: {fileID: 0}
+  asaalangeldini: 0
 --- !u!95 &42037465
 Animator:
   serializedVersion: 4
