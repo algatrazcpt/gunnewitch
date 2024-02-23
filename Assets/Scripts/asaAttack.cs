@@ -65,16 +65,14 @@ public class asaAttack : MonoBehaviour
 
     public void EnemyDetect()
     {
-        anims.SetTrigger("maleAttack");
+        
         
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(attackPoint.position, MeleAttackRange))
         {
             if (collider.gameObject.CompareTag("Enemy"))
             {
-                getPoper.GetObjectFromPool().GetComponent<DamagePop>().DamageCreate(collider.transform.position, meleDamage);
+                collider.gameObject.GetComponent<BasicEnemyMovement>().EnemyTakeDamage(meleDamage);
             }
-
-
         }
 
 
@@ -82,11 +80,14 @@ public class asaAttack : MonoBehaviour
     IEnumerator AttackRate()
     {
         canAttack = false;
+        anims.SetTrigger("maleAttack");
         EnemyDetect();
         yield return new WaitForSeconds(1f / attackTime);
         anims.ResetTrigger("maleAttack");
         canAttack = true;
     }
+
+
 
 
     private void OnDrawGizmosSelected()
