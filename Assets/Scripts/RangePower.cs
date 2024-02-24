@@ -7,7 +7,7 @@ public class RangePower : MonoBehaviour
 
     public float range = 0f;
     public List<GameObject> alanaGirenler = new List<GameObject>();
-    // Start is called before the first frame update
+
     void Start()
     {
         

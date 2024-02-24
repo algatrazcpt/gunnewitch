@@ -10,7 +10,7 @@ public class asaAttack : MonoBehaviour
     public float MeleAttackRange = 0.8f;
     PopController getPoper;
     public float meleDamage = 5;
-    private bool canAttack=true;
+    public bool canAttack=true;
     private float attackTime=2;
 
     public bool ishold = false;

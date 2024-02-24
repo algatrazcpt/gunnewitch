@@ -230,6 +230,7 @@ MonoBehaviour:
   attackPoint: {fileID: 486303812}
   MeleAttackRange: 0.4
   meleDamage: 35
+  canAttack: 1
   ishold: 0
   holtime: 0
   holdRef: 2
@@ -14669,7 +14670,7 @@ GameObject:
   - component: {fileID: 677510355}
   - component: {fileID: 677510358}
   m_Layer: 0
-  m_Name: Circle (1)
+  m_Name: RangeFieldSc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15400,8 +15401,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1749948255
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16289,7 +16290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214188342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5053305, y: -1.4618267, z: 0}
+  m_LocalPosition: {x: -2.33, y: -2.44, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21274,6 +21275,7 @@ MonoBehaviour:
   Health: 80
   faceRight: 1
   customUi: {fileID: 82762768}
+  asa: {fileID: 42037464}
   InteractId: -1
   currentInteractItem: {fileID: 0}
   anims: {fileID: 1313932105}
@@ -22149,7 +22151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1999403434
 Animator:
   serializedVersion: 4

@@ -26,9 +26,8 @@ public class PlayerMovment : MonoBehaviour
     public float Health;
     float currentHealt;
     public bool faceRight = true;
-
     public GameObject customUi;
-
+    public asaAttack asa;
     public int InteractId = -1;
     public GameObject currentInteractItem;
 
@@ -152,7 +151,7 @@ public class PlayerMovment : MonoBehaviour
             //StartCoroutine("RangeSalsýrýtime");
             Rangeobj.SetActive(true);
             Rangeobj.GetComponent<RangeField>().OzelAktifmi = true;
-
+            asa.canAttack = true;
 
 
         }

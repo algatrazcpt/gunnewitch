@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RangeField : MonoBehaviour
 {
-
     public float range = 0f;
     public Transform playertrf;
     public bool OzelAktifmi = false;
@@ -29,7 +28,7 @@ public class RangeField : MonoBehaviour
             if(gecensure>= ozelguçsüre)
             {
                 OzelGucKapandý();
-
+                
             }
 
         }
