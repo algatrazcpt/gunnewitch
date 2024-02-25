@@ -6,34 +6,43 @@ public class EnemyAttack : MonoBehaviour
 {
     public float attackDamage;
     public float attackMoveSpeed;
-    public Animator cAnimator;
-    public GameObject boomEffect;
+    public ParticleSystem attackAnim;
+    public ParticleSystem boomEffect;
+    public GameObject effectTrail;
+
+    //
+    public float initialSpeed = 2.5f; // Baþlangýç hýzý
+    public float acceleration = 10f; // Hýzlanma miktarý
+    public float maxSpeed = 10f; // Maksimum hýz
+    private float currentSpeed=2.5f; // Þu anki hýz
+    //
+
     Rigidbody2D rg;
     Vector2 direction;
     
-     void Awake()
+    void Awake()
     {
         rg= GetComponent<Rigidbody2D>();
     }
     public void AttackCreate(Vector3 defaultPos,Vector3  targetPos)
     {
-        boomEffect.SetActive(false);
+        currentSpeed = initialSpeed;
         transform.position = defaultPos;
         direction = new Vector2(targetPos.x - defaultPos.x, targetPos.y - defaultPos.y);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         // Yatay düzlemde dönme iþlemini saðlamak için rotasyonu belirle
+        
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = targetRotation;
-
-
+        effectTrail.transform.rotation = Quaternion.Euler(0, 0, angle+90f);
         gameObject.SetActive(true);
-        Invoke("BulletDestroy",10);
+        
     }
      void Update()
     {
         if (gameObject.activeInHierarchy == true)
         {
-            rg.velocity = direction.normalized * attackMoveSpeed;
+            currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
+            rg.velocity = direction.normalized * currentSpeed;
         }
     }
     void BulletDestroy()
@@ -41,10 +50,11 @@ public class EnemyAttack : MonoBehaviour
         if (gameObject.activeInHierarchy == true)
         {
             rg.velocity = Vector2.zero;
-            boomEffect.SetActive(true);
-            cAnimator.SetTrigger("BoomEffect");
-            CancelInvoke("BulletDestroy");
-            Invoke("effectBugFix", 0.1f);
+            currentSpeed = initialSpeed;
+            boomEffect.Play();
+
+
+            Invoke("effectBugFix", 0.2f);
             
         }
     }

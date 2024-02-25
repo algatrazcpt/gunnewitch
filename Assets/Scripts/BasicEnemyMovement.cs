@@ -20,9 +20,10 @@ public class BasicEnemyMovement : MonoBehaviour
     private bool canAttack = true; // Ateþ etmeye hazýr mý?
     public float health = 100f;
     public float enemySpeelExp = 1f;
-
+    public bool slime = false;
     float currentHealth;
     Material cMaterial;
+    public Transform attackpoint;
     EnemyAttackPoolController enemyAttackPoolController;
     void Start()
     {
@@ -38,6 +39,7 @@ public class BasicEnemyMovement : MonoBehaviour
     Vector2 direction;
     void Update()
     {
+
         if (gameObject.activeSelf == true)
         {
             // Deneme için oluþtrudum Silebilirsin istersen farklý da yazýlýr (Emre)  pozisyon ile saldýrma trigger yok collision yok
@@ -74,7 +76,7 @@ public class BasicEnemyMovement : MonoBehaviour
      void attack()
     {
         cAttack = enemyAttackPoolController.GetObjectFromPool().GetComponent<EnemyAttack>();
-        cAttack.AttackCreate(transform.position,playerTransform.position);
+        cAttack.AttackCreate(attackpoint.position,playerTransform.position);
 
     }
     void meeleAttack()
