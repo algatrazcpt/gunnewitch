@@ -50,7 +50,9 @@ public class RangeField : MonoBehaviour
         if (collision.gameObject.CompareTag("enemyBullet"))
         {
             affectedBullets.Add(collision.gameObject);
-            collision.GetComponent<EnemyAttack>().attackMoveSpeed = 1;
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = -1 * collision.gameObject.GetComponent<Rigidbody2D>().velocity;
+            collision.gameObject.GetComponent<EnemyAttack>().slowEffect = true;
+            collision.gameObject.GetComponent<EnemyAttack>().currentSpeed = -6;
         }
 
 
@@ -61,7 +63,10 @@ public class RangeField : MonoBehaviour
 
         if (collision.gameObject.CompareTag("enemyBullet"))
         {
-            collision.GetComponent<EnemyAttack>().attackMoveSpeed = 6;
+            Debug.Log("Enemy Get");
+            
+            collision.GetComponent<EnemyAttack>().slowEffect = false;
+            collision.GetComponent<EnemyAttack>().currentSpeed = 6;
             affectedBullets.Remove(collision.gameObject);
         }
 
@@ -73,7 +78,7 @@ public class RangeField : MonoBehaviour
         foreach (var a in affectedBullets)
         {
 
-            a.GetComponent<EnemyAttack>().attackMoveSpeed = 6;
+            a.GetComponent<EnemyAttack>().currentSpeed = 6;
         }
         affectedBullets.Clear();
         gecensure = 0f;

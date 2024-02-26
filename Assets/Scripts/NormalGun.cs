@@ -24,7 +24,7 @@ public class NormalGun : MonoBehaviour
     {
 
         //Input.GetMouseButton(0)
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
 
             mausePos = maincam.ScreenToWorldPoint(Input.mousePosition);
@@ -36,7 +36,6 @@ public class NormalGun : MonoBehaviour
 
                //GameObject bullet= Instantiate(Gun, ShootPoint.position, ShootPoint.rotation);
                 Vector3 direction = mausePos - ShootPoint.localPosition;
-                Debug.Log(ShootPoint.localPosition);
                 playerPool.GetObjectFromPool().GetComponent<BulletDamage>().AttackCreate(ShootPoint.position, mausePos);
 
 

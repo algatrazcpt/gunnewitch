@@ -34,30 +34,34 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if(balancePerEnemy== currentEnemyCount)
+        if (LevelBalance.Instance.currentEnemy < LevelBalance.Instance.maxEnemyCount)
         {
-            currentEnemyCount = 0;
-            LevelBalance.Instance.LevelBalanceUp();
-        }
-        if(timeBalancePerEnemy==currentTimeBalancePerEnemy)
-        {
-            currentTimeBalancePerEnemy = 0;
-            LevelBalance.Instance.TimeBalanceUp();
-            CancelInvoke();
-            SpawnEnemySystem(LevelBalance.Instance.GetTimeBalance());
-            //
-            LevelPositionChange();
-            //
-            for (int index = 0; index < LevelBalance.Instance.levelUpgradeBalance; index++)
+            if (balancePerEnemy == currentEnemyCount)
             {
-                //LevelGift
-                SpawnKazan();
+                currentEnemyCount = 0;
+                LevelBalance.Instance.LevelBalanceUp();
             }
+            if (timeBalancePerEnemy == currentTimeBalancePerEnemy)
+            {
+                currentTimeBalancePerEnemy = 0;
+                LevelBalance.Instance.TimeBalanceUp();
+                CancelInvoke();
+                SpawnEnemySystem(LevelBalance.Instance.GetTimeBalance());
+                //
+                LevelPositionChange();
+                //
+                for (int index = 0; index < LevelBalance.Instance.levelUpgradeBalance; index++)
+                {
+                    //LevelGift
+                    SpawnKazan();
+                }
+            }
+            GetRandomEnemyType().GetComponent<BasicEnemyMovement>().CreateEnemy(GetRandomSpawnLocationPosition());
+            currentEnemyCount += 1;
+            currentTimeBalancePerEnemy += 1;
+            LevelBalance.Instance.currentEnemy++;
         }
 
-        GetRandomEnemyType().GetComponent<BasicEnemyMovement>().CreateEnemy(GetRandomSpawnLocationPosition());
-        currentEnemyCount +=1 ;
-        currentTimeBalancePerEnemy += 1;
     }
     GameObject GetRandomEnemyType()
     {

@@ -14,18 +14,39 @@ public class EnemyAttack : MonoBehaviour
     public float initialSpeed = 2.5f; // Baþlangýç hýzý
     public float acceleration = 10f; // Hýzlanma miktarý
     public float maxSpeed = 10f; // Maksimum hýz
-    private float currentSpeed=2.5f; // Þu anki hýz
-    //
+    public float currentSpeed=2.5f; // Þu anki hýz
+                                    //
+    public float attackDamageD;
+    public float attackMoveSpeedD;
+    public float initialSpeedD = 2.5f; // Baþlangýç hýzý
+    public float accelerationD = 10f; // Hýzlanma miktarý
+    public float maxSpeedD = 10f; // Maksimum hýz
 
+    //
+    public bool slowEffect = false;
     Rigidbody2D rg;
     Vector2 direction;
     
     void Awake()
     {
-        rg= GetComponent<Rigidbody2D>();
+        attackDamageD = attackDamage;
+        attackMoveSpeedD = attackMoveSpeed;
+        initialSpeedD = initialSpeed;
+        accelerationD = acceleration;
+        maxSpeedD = maxSpeed;
+        rg = GetComponent<Rigidbody2D>();
     }
     public void AttackCreate(Vector3 defaultPos,Vector3  targetPos)
     {
+        //
+        attackDamage = attackDamageD;
+        attackMoveSpeed = attackMoveSpeedD;
+        initialSpeed = initialSpeedD;
+        acceleration = accelerationD;
+        maxSpeed = maxSpeedD;
+        //
+
+
         attackDamage += LevelBalance.Instance.damageUpBalance;
         attackMoveSpeed += LevelBalance.Instance.attackMoveSpeed;
         maxSpeed+= LevelBalance.Instance.attackMoveSpeed; 
@@ -38,16 +59,19 @@ public class EnemyAttack : MonoBehaviour
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         effectTrail.transform.rotation = Quaternion.Euler(0, 0, angle+90f);
         gameObject.SetActive(true);
-        
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+
     }
      void Update()
     {
-        if (gameObject.activeInHierarchy == true)
+        if (gameObject.activeInHierarchy == true&& !slowEffect)
         {
             currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
             rg.velocity = direction.normalized * currentSpeed;
         }
     }
+
+    
     void BulletDestroy()
     {
         if (gameObject.activeInHierarchy == true)
@@ -62,7 +86,7 @@ public class EnemyAttack : MonoBehaviour
     }
     void effectBugFix()
     {
-        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -172,7 +172,7 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   meleeParticle: {fileID: 0}
   attackTime: 0.5
-  enemySpeed: 3
+  enemySpeed: 4
   attackRange: 5
   canMeele: 0
   meleeDamage: 20
@@ -182,6 +182,11 @@ MonoBehaviour:
   slime: 1
   attackpoint: {fileID: 2995311139014080182}
   levelBalance: {fileID: 0}
+  meleeDamageD: 0
+  attackTimeD: 0
+  enemySpeedD: 0
+  healthD: 0
+  enemyDeathExpD: 0
 --- !u!1 &2995311139014080183
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,13 +28,33 @@ public class BasicEnemyMovement : MonoBehaviour
     EnemyAttackPoolController enemyAttackPoolController;
     public LevelBalance levelBalance;
 
+
+    public float meleeDamageD;
+    public float attackTimeD;
+    public float enemySpeedD;
+    public float healthD;
+    public float enemyDeathExpD;
+
+
     public void CreateEnemy(Transform currentPos)
     {
         levelBalance = LevelBalance.Instance;
+
+        health = healthD;
+        meleeDamage = meleeDamageD;
+        attackTime = attackTimeD;
+        enemySpeed = enemySpeedD;
+        enemyDeathExp = enemyDeathExpD;
+
+
+
+
+
+
         canAttack = true;
         //Balance System;
         meleeDamage += levelBalance.damageUpBalance;
-        enemySpeed += levelBalance.enemyMovementUpBalance;
+        enemySpeed = enemySpeedD + levelBalance.enemyMovementUpBalance;
         health += levelBalance.healtUpBalance;
         enemyDeathExp += levelBalance.enemyExpUpBalance;
         //
@@ -42,7 +62,14 @@ public class BasicEnemyMovement : MonoBehaviour
         transform.position = currentPos.position;
         gameObject.SetActive(true);
     }
-
+    private void Awake()
+    {
+        healthD = health;
+        meleeDamageD = meleeDamage;
+        attackTimeD = attackTime;
+        enemySpeedD = enemySpeed;
+        enemyDeathExpD = enemyDeathExp;
+    }
 
 
     void Start()
@@ -53,7 +80,18 @@ public class BasicEnemyMovement : MonoBehaviour
         enemyAttackPoolController = EnemyAttackPoolController.instance;
         cMaterial =  gameObject.GetComponent<SpriteRenderer>().material;
         gameObject.GetComponent<SpriteRenderer>().material = cMaterial;
+
+
+
+
+
+
         currentHealth = health;
+        
+
+
+
+
     }
 
     // Update is called once per frame
@@ -160,6 +198,7 @@ public class BasicEnemyMovement : MonoBehaviour
     {
         playerTransform.GetComponent<PlayerMovment>().TakeSpeelDamage(enemySpeelExp);
         gameObject.SetActive(false);
+        levelBalance.currentEnemy--;
         ResetSystem();
     }
     IEnumerator EnemyTakeDamageEffect()

@@ -172,16 +172,21 @@ MonoBehaviour:
   playerTransform: {fileID: 0}
   meleeParticle: {fileID: 4220269529653557748}
   attackTime: 5
-  enemySpeed: 1
+  enemySpeed: 3
   attackRange: 1
   canMeele: 1
   meleeDamage: 20
-  health: 10
+  health: 50
   enemySpeelExp: 1
   enemyDeathExp: 1
   slime: 0
   attackpoint: {fileID: 0}
   levelBalance: {fileID: 0}
+  meleeDamageD: 0
+  attackTimeD: 0
+  enemySpeedD: 0
+  healthD: 0
+  enemyDeathExpD: 0
 --- !u!1001 &7736289034178180886
 PrefabInstance:
   m_ObjectHideFlags: 0

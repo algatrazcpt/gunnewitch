@@ -6,6 +6,11 @@ public class LevelBalance : MonoBehaviour
 {
     // Start is called before the first frame update
     public static LevelBalance Instance;
+
+    public int currentEnemy=0;
+    public int maxEnemyCount = 50;
+
+
     public int healtUpBalance = 1;
     public int damageUpBalance=1;
     public int enemyExpUpBalance=1;

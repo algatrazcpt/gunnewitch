@@ -27,6 +27,8 @@ public class BulletDamage : MonoBehaviour
         transform.rotation = targetRotation;
 
         gameObject.SetActive(true);
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        CancelInvoke();
         Invoke("BulletDestroy", 10);
     }
     void Update()
@@ -51,7 +53,7 @@ public class BulletDamage : MonoBehaviour
     }
     void effectBugFix()
     {
-        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
