@@ -20,13 +20,34 @@ public class BasicEnemyMovement : MonoBehaviour
     private bool canAttack = true; // Ateþ etmeye hazýr mý?
     public float health = 100f;
     public float enemySpeelExp = 1f;
+    public float enemyDeathExp = 1f;
     public bool slime = false;
     float currentHealth;
     Material cMaterial;
     public Transform attackpoint;
     EnemyAttackPoolController enemyAttackPoolController;
+    public LevelBalance levelBalance;
+
+    public void CreateEnemy(Transform currentPos)
+    {
+        levelBalance = LevelBalance.Instance;
+        canAttack = true;
+        //Balance System;
+        meleeDamage += levelBalance.damageUpBalance;
+        enemySpeed += levelBalance.enemyMovementUpBalance;
+        health += levelBalance.healtUpBalance;
+        enemyDeathExp += levelBalance.enemyExpUpBalance;
+        //
+        currentHealth = health;
+        transform.position = currentPos.position;
+        gameObject.SetActive(true);
+    }
+
+
+
     void Start()
     {
+        levelBalance = LevelBalance.Instance;
         popController = PopController.instance;
         rg = gameObject.GetComponent<Rigidbody2D>();
         enemyAttackPoolController = EnemyAttackPoolController.instance;
@@ -39,12 +60,42 @@ public class BasicEnemyMovement : MonoBehaviour
     Vector2 direction;
     void Update()
     {
+        if (true)
+        {
+            // Hedef nesnenin konumunu al
+            Vector3 targetPosition = playerTransform.position;
+
+            // Kendi konumunu al
+            Vector3 currentPosition = transform.position;
+
+            // Hedefe doðru vektör oluþtur
+            Vector3 direction = targetPosition - currentPosition;
+
+            // Hedefe doðru dönme açýsýný hesapla (radyan cinsinden)
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            // Yön vektörünün normalini (1 ve -1 deðerlerini) al
+            Vector3 scale = transform.localScale;
+
+            // Eðer hedefin saðýnda ise, Sprite'ý normal haliyle býrak
+            if (direction.x >= 0)
+            {
+                //SlimeSprite bugfixFlip -
+                transform.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
+            }
+            // Eðer hedefin solunda ise, Sprite'ý flip et
+            else
+            {
+                transform.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+            }
+        }
 
         if (gameObject.activeSelf == true)
         {
             // Deneme için oluþtrudum Silebilirsin istersen farklý da yazýlýr (Emre)  pozisyon ile saldýrma trigger yok collision yok
             if (Vector3.Distance(transform.position, playerTransform.position) < attackRange)
             {
+
                 if (canAttack)
                 {
                     StartCoroutine("AttackRate");
@@ -53,6 +104,7 @@ public class BasicEnemyMovement : MonoBehaviour
             }
             else
             {
+                Debug.Log("Enemy Move");
                 EnemyMove();
             }
         }
@@ -63,14 +115,6 @@ public class BasicEnemyMovement : MonoBehaviour
         rg.velocity = direction.normalized * enemySpeed;
 
     }
-
-
-    // Deneme için oluþtrudum Silebilirsin istersen farklý da yazýlýr (Emre)
-
-
-    // Deneme için oluþtrudum Silebilirsin istersen farklý da yazýlýr (Emre)
-
-
 
     EnemyAttack cAttack;
      void attack()

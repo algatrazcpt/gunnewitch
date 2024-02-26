@@ -43,6 +43,7 @@ public class BulletDamage : MonoBehaviour
             rg.velocity = Vector2.zero;
             boomEffect.SetActive(true);
             cAnimator.SetTrigger("BoomEffect");
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
             CancelInvoke("BulletDestroy");
             Invoke("effectBugFix", 0.1f);
 
@@ -50,6 +51,7 @@ public class BulletDamage : MonoBehaviour
     }
     void effectBugFix()
     {
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)

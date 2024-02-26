@@ -26,6 +26,9 @@ public class EnemyAttack : MonoBehaviour
     }
     public void AttackCreate(Vector3 defaultPos,Vector3  targetPos)
     {
+        attackDamage += LevelBalance.Instance.damageUpBalance;
+        attackMoveSpeed += LevelBalance.Instance.attackMoveSpeed;
+        maxSpeed+= LevelBalance.Instance.attackMoveSpeed; 
         currentSpeed = initialSpeed;
         transform.position = defaultPos;
         direction = new Vector2(targetPos.x - defaultPos.x, targetPos.y - defaultPos.y);
@@ -52,15 +55,14 @@ public class EnemyAttack : MonoBehaviour
             rg.velocity = Vector2.zero;
             currentSpeed = initialSpeed;
             boomEffect.Play();
-
-
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
             Invoke("effectBugFix", 0.2f);
             
         }
     }
     void effectBugFix()
     {
-        
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
