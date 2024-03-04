@@ -97,7 +97,7 @@ public class FlameAttack : MonoBehaviour
         isTrig = false;
         foreach (GameObject obj in alanaGirenler)
         {
-            getPoper.GetObjectFromPool().GetComponent<DamagePop>().DamageCreate(obj.transform.position, damage);
+            //getPoper.GetObjectFromPool().GetComponent<DamagePop>().DamageCreate(obj.transform.position, damage);
             obj.gameObject.GetComponent<BasicEnemyMovement>().EnemyTakeDamage(damage);
         }
 

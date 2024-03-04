@@ -191,7 +191,7 @@ public class BasicEnemyMovement : MonoBehaviour
         currentHealth -= damage;
         DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
         currentPop.DamageCreate(transform.position, damage);
-        currentPop.DamageColor(Color.red);
+        currentPop.DamageColor(Color.white);
         StartCoroutine("EnemyTakeDamageEffect");
     }
     void EnemyDeath()
