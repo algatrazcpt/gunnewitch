@@ -144,14 +144,28 @@ public class PlayerMovment : MonoBehaviour
             anims.SetBool("yuruyor", false);
         }
 
+
         if (Input.GetKeyDown(KeyCode.Space) && rageAnim)
         {
-            anims.SetTrigger("range");
-            StartCoroutine("WitchAnim");
-            //StartCoroutine("RangeSalsýrýtime");
-            Rangeobj.SetActive(true);
-            Rangeobj.GetComponent<RangeField>().OzelAktifmi = true;
-            asa.canAttack = true;
+            if(weapon.GetComponent<WeaponList>().currentWeapon.name== "asa_yilanli1_")
+            {
+                anims.SetTrigger("range");
+                StartCoroutine("WitchAnim");
+                //StartCoroutine("RangeSalsýrýtime");
+                Rangeobj.SetActive(true);
+                Rangeobj.GetComponent<RangeField>().OzelAktifmi = true;
+                asa.canAttack = true;
+            }
+
+            else if(weapon.GetComponent<WeaponList>().currentWeapon.name == "lava_gun4")
+            {
+                anims.SetTrigger("range");
+                StartCoroutine("WitchAnim");
+                weapon.GetComponent<WeaponList>().currentWeapon.GetComponent<FlameGun>().ozelkullan = true;
+
+
+            }
+
 
 
         }

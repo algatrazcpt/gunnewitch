@@ -9,7 +9,8 @@ public class FlameGun : MonoBehaviour
     public GameObject flameRange;
     public GameObject flame;
     public ParticleSystem flamepart;
-    
+    public Transform weapon;
+    public bool ozelkullan = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,13 @@ public class FlameGun : MonoBehaviour
             flameRange.SetActive(true);
             flame.SetActive(true);
             flamepart.Play();
-
-
+            flameRange.transform.position = weapon.position;
+            flameRange.transform.rotation = weapon.rotation;
+            if (ozelkullan)
+            {
+                flameRange.GetComponent<FlameAttack>().ozelAktifmi = true;
+            }
+            
 
         }
         if (Input.GetMouseButtonUp(0))
@@ -34,10 +40,23 @@ public class FlameGun : MonoBehaviour
             flamepart.Pause();
             flamepart.Clear();
             flame.SetActive(false);
+            ozelkullan = false;
+        }
+
+        if (flameRange.GetComponent<FlameAttack>().ozelAktifmi)
+        {
+            flameRange.GetComponent<FlameAttack>().isFlamePowerOpen = true;
+            flameRange.GetComponent<FlameAttack>().gecensure += Time.deltaTime;
+            if (flameRange.GetComponent<FlameAttack>().gecensure > flameRange.GetComponent<FlameAttack>().refsüre)
+            {
+                flameRange.GetComponent<FlameAttack>().ozelAktifmi = false;
+                flameRange.GetComponent<FlameAttack>().gecensure = 0f;
+                flameRange.GetComponent<FlameAttack>().isFlamePowerOpen = false;
+            }
 
         }
 
-        
+
     }
 
    

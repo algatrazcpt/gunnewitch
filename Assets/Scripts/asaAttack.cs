@@ -40,27 +40,27 @@ public class asaAttack : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             ishold = false;
-            holtime = 0f;
-            Destroy(refAsaAlan,1f);
-            asaalangeldini = false;
+            //holtime = 0f;
+            //Destroy(refAsaAlan,1f);
+            //asaalangeldini = false;
         }
 
-        if (ishold)
-        {
-            holtime += Time.deltaTime;
+        //if (ishold)
+        //{
+        //    holtime += Time.deltaTime;
 
-            if (holtime >holdRef)
-            {
-                if (!asaalangeldini)
-                {
-                    refAsaAlan = Instantiate(AsaAlan, transform.position, Quaternion.identity);
-                    asaalangeldini = true;
-                }
+        //    if (holtime >holdRef)
+        //    {
+        //        if (!asaalangeldini)
+        //        {
+        //            refAsaAlan = Instantiate(AsaAlan, transform.position, Quaternion.identity);
+        //            asaalangeldini = true;
+        //        }
                 
 
-            }
+        //    }
 
-        }
+        //}
     }
 
     public void EnemyDetect()
