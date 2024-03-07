@@ -11,13 +11,6 @@ public class FlameGun : MonoBehaviour
     public ParticleSystem flamepart;
     public Transform weapon;
     public bool ozelkullan = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -30,9 +23,13 @@ public class FlameGun : MonoBehaviour
             if (ozelkullan)
             {
                 flameRange.GetComponent<FlameAttack>().ozelAktifmi = true;
+                flameRange.GetComponent<FlameAttack>().isFlamePowerOpen = true;
+                ozelkullan = false;
             }
-            
-
+            if (flameRange.GetComponent<FlameAttack>().ozelAktifmi)
+            {
+                flameRange.GetComponent<FlameAttack>().gecensure += Time.deltaTime;
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -40,25 +37,13 @@ public class FlameGun : MonoBehaviour
             flamepart.Pause();
             flamepart.Clear();
             flame.SetActive(false);
-            ozelkullan = false;
         }
-
-        if (flameRange.GetComponent<FlameAttack>().ozelAktifmi)
+        if (flameRange.GetComponent<FlameAttack>().gecensure > flameRange.GetComponent<FlameAttack>().refsüre)
         {
-            flameRange.GetComponent<FlameAttack>().isFlamePowerOpen = true;
-            flameRange.GetComponent<FlameAttack>().gecensure += Time.deltaTime;
-            if (flameRange.GetComponent<FlameAttack>().gecensure > flameRange.GetComponent<FlameAttack>().refsüre)
-            {
+
                 flameRange.GetComponent<FlameAttack>().ozelAktifmi = false;
                 flameRange.GetComponent<FlameAttack>().gecensure = 0f;
                 flameRange.GetComponent<FlameAttack>().isFlamePowerOpen = false;
-            }
-
         }
-
-
     }
-
-   
-
 }

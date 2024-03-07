@@ -15,7 +15,6 @@ public class BasicEnemyMovement : MonoBehaviour
     public float attackTime;
     public float enemySpeed;
     public float attackRange;
-    public bool canMeele = true;
     public float meleeDamage=10;
     private bool canAttack = true; // Ateþ etmeye hazýr mý?
     public float health = 100f;
@@ -34,7 +33,15 @@ public class BasicEnemyMovement : MonoBehaviour
     public float enemySpeedD;
     public float healthD;
     public float enemyDeathExpD;
+    public enemyType currentEnemyType;
 
+
+    public enum enemyType{
+        Range,
+        Meele,
+        Explode
+
+    }
 
     public void CreateEnemy(Transform currentPos)
     {
@@ -172,14 +179,18 @@ public class BasicEnemyMovement : MonoBehaviour
     IEnumerator AttackRate()
     {
         canAttack = false;
-        if (canMeele)
+        if (currentEnemyType==enemyType.Meele)
         {
             meleeParticle.Play();
             meeleAttack();
         }
-        else
+        else if(currentEnemyType==enemyType.Range)
         {
             attack();
+        }
+        else if(currentEnemyType==enemyType.Explode)
+        {
+            //Explode
         }
         // Ateþ et
         // Belirli bir süre sonra tekrar ateþ etmeye izin ver
@@ -198,6 +209,10 @@ public class BasicEnemyMovement : MonoBehaviour
     {
         playerTransform.GetComponent<PlayerMovment>().TakeSpeelDamage(enemySpeelExp);
         gameObject.SetActive(false);
+        if(currentEnemyType==enemyType.Range)
+        {
+            levelBalance.currentRangeEnemy--;
+        }
         levelBalance.currentEnemy--;
         ResetSystem();
     }

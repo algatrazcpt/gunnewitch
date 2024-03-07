@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 2750582976632905959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.517816, y: -6.2515626, z: 0.05410982}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5889577383524379986}
   - {fileID: 4821169888487217756}
@@ -57,6 +57,13 @@ MonoBehaviour:
   initialSpeed: 1
   acceleration: 8
   maxSpeed: 20
+  currentSpeed: 2.5
+  attackDamageD: 0
+  attackMoveSpeedD: 0
+  initialSpeedD: 2.5
+  accelerationD: 10
+  maxSpeedD: 10
+  slowEffect: 0
 --- !u!50 &3752603810755723618
 Rigidbody2D:
   serializedVersion: 4
@@ -961,7 +968,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4933,8 +4940,8 @@ Transform:
   m_GameObject: {fileID: 8341459527641459430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9103776595263178026}
   m_RootOrder: 2
@@ -5263,7 +5270,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.12
+      scalar: 0.15
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9725,6 +9732,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9103776595263178026}
     m_Modifications:
+    - target: {fileID: 3189126824770702770, guid: 94ee53f3e9bc26647be2229eb6ee1995, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3189126824770702771, guid: 94ee53f3e9bc26647be2229eb6ee1995, type: 3}
       propertyPath: m_RootOrder
       value: 1

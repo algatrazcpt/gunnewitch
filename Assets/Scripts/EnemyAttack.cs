@@ -80,13 +80,12 @@ public class EnemyAttack : MonoBehaviour
             currentSpeed = initialSpeed;
             boomEffect.Play();
             gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            Invoke("effectBugFix", 0.2f);
+            Invoke("effectBugFix", 0.1f);
             
         }
     }
     void effectBugFix()
     {
-        
         gameObject.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)

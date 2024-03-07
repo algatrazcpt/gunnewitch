@@ -6,13 +6,15 @@ public class SpawnManager : MonoBehaviour
 {
    
     public Vector2 squareSize; // Kare alanýn boyutu
-
+    public int rangeEnemyId=0;//RangeEveryFirst
     public GameObject spawnKazanObject; // Oluþturulacak nesne
 
     public int timeBalancePerEnemy = 100;
     public int balancePerEnemy = 20;
     private int currentTimeBalancePerEnemy = 100;
     private int currentEnemyCount=0;
+
+    private LevelBalance currentLevelBlance;
     EnemyPool pool;
     public Transform[] enemySpawnLocations;
     private int enemysTypeCount;
@@ -21,6 +23,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        currentLevelBlance = LevelBalance.Instance;
         pool = EnemyPool.Instance;
         enemysTypeCount = pool.enemyPrefabs.Length;
         spawnLocationCount = enemySpawnLocations.Length;
@@ -34,23 +37,23 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnEnemy()
     {
-        if (LevelBalance.Instance.currentEnemy < LevelBalance.Instance.maxEnemyCount)
+        if (currentLevelBlance.currentEnemy < currentLevelBlance.maxEnemyCount)
         {
             if (balancePerEnemy == currentEnemyCount)
             {
                 currentEnemyCount = 0;
-                LevelBalance.Instance.LevelBalanceUp();
+                currentLevelBlance.LevelBalanceUp();
             }
             if (timeBalancePerEnemy == currentTimeBalancePerEnemy)
             {
                 currentTimeBalancePerEnemy = 0;
-                LevelBalance.Instance.TimeBalanceUp();
+                currentLevelBlance.TimeBalanceUp();
                 CancelInvoke();
-                SpawnEnemySystem(LevelBalance.Instance.GetTimeBalance());
+                SpawnEnemySystem(currentLevelBlance.GetTimeBalance());
                 //
                 LevelPositionChange();
                 //
-                for (int index = 0; index < LevelBalance.Instance.levelUpgradeBalance; index++)
+                for (int index = 0; index < currentLevelBlance.levelUpgradeBalance; index++)
                 {
                     //LevelGift
                     SpawnKazan();
@@ -65,7 +68,20 @@ public class SpawnManager : MonoBehaviour
     }
     GameObject GetRandomEnemyType()
     {
-        return pool.GetPooledEnemy(Random.Range(0, enemysTypeCount));
+        int currentType= Random.Range(0, enemysTypeCount);
+        if(currentType==rangeEnemyId)
+        {
+            if (currentLevelBlance.maxRangeEnemyCount > currentLevelBlance.currentRangeEnemy)
+            {
+                currentLevelBlance.currentRangeEnemy++;
+                return pool.GetPooledEnemy(rangeEnemyId);
+            }
+            else
+            {
+                return pool.GetPooledEnemy(Random.Range(rangeEnemyId+1, enemysTypeCount));
+            }
+        }
+        return pool.GetPooledEnemy(currentType);
     }
     Transform GetRandomSpawnLocationPosition()
     {

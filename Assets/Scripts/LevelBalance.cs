@@ -8,8 +8,9 @@ public class LevelBalance : MonoBehaviour
     public static LevelBalance Instance;
 
     public int currentEnemy=0;
+    public int currentRangeEnemy;
     public int maxEnemyCount = 50;
-
+    public int maxRangeEnemyCount = 20;
 
     public int healtUpBalance = 1;
     public int damageUpBalance=1;

@@ -171,10 +171,9 @@ MonoBehaviour:
   popController: {fileID: 0}
   playerTransform: {fileID: 0}
   meleeParticle: {fileID: 0}
-  attackTime: 0.5
+  attackTime: 0.25
   enemySpeed: 4
   attackRange: 5
-  canMeele: 0
   meleeDamage: 20
   health: 100
   enemySpeelExp: 1
@@ -187,6 +186,7 @@ MonoBehaviour:
   enemySpeedD: 0
   healthD: 0
   enemyDeathExpD: 0
+  currentEnemyType: 0
 --- !u!1 &2995311139014080183
 GameObject:
   m_ObjectHideFlags: 0
