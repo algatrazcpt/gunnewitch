@@ -207,7 +207,7 @@ public class BasicEnemyMovement : MonoBehaviour
             }
             else
             {
-                enemy.gameObject.GetComponent<BasicEnemyMovement>().EnemyTakeDamage(damage / 2);
+                enemy.gameObject.GetComponent<BasicEnemyMovement>().EnemyTakeDamage(Mathf.RoundToInt(damage / 2));
                 Debug.Log("Enemy found");
             }
         }
@@ -243,6 +243,7 @@ public class BasicEnemyMovement : MonoBehaviour
     }
     public void EnemyTakeDamage(float damage)
     {
+
         if (courutineBugFix)
         {
             currentHealth -= damage;

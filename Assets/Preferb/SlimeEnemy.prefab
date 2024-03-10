@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2995311137301683074}
   - component: {fileID: 2995311137301683075}
   - component: {fileID: 2995311137301683084}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -177,13 +177,14 @@ MonoBehaviour:
   attackTime: 0.25
   enemySpeed: 4
   attackRange: 5
-  meleeDamage: 20
+  damage: 10
   health: 100
   enemySpeelExp: 1
   enemyDeathExp: 1
   slime: 1
   attackpoint: {fileID: 2995311139014080182}
   levelBalance: {fileID: 0}
+  explosionRange: 0
   meleeDamageD: 0
   attackTimeD: 0
   enemySpeedD: 0
@@ -200,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2995311139014080182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}

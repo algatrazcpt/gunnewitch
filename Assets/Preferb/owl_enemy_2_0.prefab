@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7736289034725776894}
   - component: {fileID: 7736289034725776895}
   - component: {fileID: 7736289034725776892}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: owl_enemy_2_0
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -171,22 +171,27 @@ MonoBehaviour:
   popController: {fileID: 0}
   playerTransform: {fileID: 0}
   meleeParticle: {fileID: 4220269529653557748}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   attackTime: 5
-  enemySpeed: 3
+  enemySpeed: 0
   attackRange: 1
-  meleeDamage: 20
+  damage: 10
   health: 50
   enemySpeelExp: 1
   enemyDeathExp: 1
   slime: 0
   attackpoint: {fileID: 0}
   levelBalance: {fileID: 0}
+  explosionRange: 0
   meleeDamageD: 0
   attackTimeD: 0
   enemySpeedD: 0
   healthD: 0
   enemyDeathExpD: 0
   currentEnemyType: 1
+  playerAnim: {fileID: 0}
 --- !u!1001 &7736289034178180886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -197,6 +202,10 @@ PrefabInstance:
     - target: {fileID: 2443386508292529266, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
       propertyPath: m_Name
       value: AttackEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2443386508292529266, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5787934431793731673, guid: b23668a1af0a38448a75ea90767256c4, type: 3}
       propertyPath: m_RenderMode
