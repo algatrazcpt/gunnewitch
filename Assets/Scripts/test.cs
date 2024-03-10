@@ -7,15 +7,45 @@ public class test : MonoBehaviour
     public GameObject bulletPrefab; // Mermi prefabý
     public float bulletSpeed = 10f; // Mermi hýzý
 
+    public float cpos=0;
+    public LayerMask layer;
     private Transform player; // Oyuncunun transformu
 
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform; // Oyuncunun pozisyonunu bul
-        InvokeRepeating("Ates", 0, 1);
+        InvokeRepeating("Killer", 0, 0.5f);
     }
 
+     void Update()
+    {
+        
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green; // Alanýn rengi
+        Gizmos.DrawWireSphere(transform.position, cpos); // Alaný görselleþtir
+    }
+
+    void Killer()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, cpos, layer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (enemy.CompareTag("Player")) // Düþman tag'i kontrol et
+            {
+                //playerTransform.gameObject.GetComponent<PlayerMovment>().TakeDamage(damage);
+                Debug.Log("Player found");
+            }
+            else
+            {
+                //enemy.gameObject.GetComponent<BasicEnemyMovement>().EnemyTakeDamage(damage / 2);
+                Debug.Log("Enemy found");
+            }
+        }
+    }
     void Ates()
     {
         // Mermi için varýþ süresini hesapla

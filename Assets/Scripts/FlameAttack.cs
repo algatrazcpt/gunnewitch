@@ -78,7 +78,7 @@ public class FlameAttack : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy")|| collision.gameObject.CompareTag("Not"))
         {
 
             alanaGirenler.Remove(collision.gameObject);
@@ -99,6 +99,7 @@ public class FlameAttack : MonoBehaviour
         {
             //getPoper.GetObjectFromPool().GetComponent<DamagePop>().DamageCreate(obj.transform.position, damage);
             obj.gameObject.GetComponent<BasicEnemyMovement>().EnemyTakeDamage(damage);
+            obj.gameObject.GetComponent<BasicEnemyMovement>().EnemyMoveSpeedAttack(-damage * 1f);
         }
 
         yield return new WaitForSeconds(0.7f);

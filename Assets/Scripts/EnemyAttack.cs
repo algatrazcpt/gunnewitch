@@ -21,7 +21,7 @@ public class EnemyAttack : MonoBehaviour
     public float initialSpeedD = 2.5f; // Baþlangýç hýzý
     public float accelerationD = 10f; // Hýzlanma miktarý
     public float maxSpeedD = 10f; // Maksimum hýz
-
+    private Vector2 playerLocation;
     //
     public bool slowEffect = false;
     Rigidbody2D rg;
@@ -36,8 +36,9 @@ public class EnemyAttack : MonoBehaviour
         maxSpeedD = maxSpeed;
         rg = GetComponent<Rigidbody2D>();
     }
-    public void AttackCreate(Vector3 defaultPos,Vector3  targetPos)
+    public void AttackCreate(Vector3 defaultPos,Vector3  targetPos, Vector3 playerPosOrg)
     {
+        playerLocation = targetPos;
         //
         attackDamage = attackDamageD;
         attackMoveSpeed = attackMoveSpeedD;
@@ -45,29 +46,27 @@ public class EnemyAttack : MonoBehaviour
         acceleration = accelerationD;
         maxSpeed = maxSpeedD;
         //
-
-
         attackDamage += LevelBalance.Instance.damageUpBalance;
         attackMoveSpeed += LevelBalance.Instance.attackMoveSpeed;
         maxSpeed+= LevelBalance.Instance.attackMoveSpeed; 
         currentSpeed = initialSpeed;
         transform.position = defaultPos;
-        direction = new Vector2(targetPos.x - defaultPos.x, targetPos.y - defaultPos.y);
+        direction = new Vector2(playerPosOrg.x - defaultPos.x, playerPosOrg.y - defaultPos.y);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         // Yatay düzlemde dönme iþlemini saðlamak için rotasyonu belirle
         
-        Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         effectTrail.transform.rotation = Quaternion.Euler(0, 0, angle+90f);
         gameObject.SetActive(true);
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
 
     }
+
      void Update()
     {
         if (gameObject.activeInHierarchy == true&& !slowEffect)
         {
-            currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, maxSpeed);
-            rg.velocity = direction.normalized * currentSpeed;
+            rg.velocity = playerLocation.normalized * currentSpeed;
         }
     }
 
