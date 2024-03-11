@@ -165,6 +165,14 @@ public class PlayerMovment : MonoBehaviour
 
 
             }
+            else if (weapon.GetComponent<WeaponList>().currentWeapon.name == "gungeon_gun1 1")
+            {
+                anims.SetTrigger("range");
+                StartCoroutine("WitchAnim");
+                weapon.GetComponent<WeaponList>().currentWeapon.GetComponent<NormalGun>().ozelaktifmi = true;
+
+
+            }
 
 
 
