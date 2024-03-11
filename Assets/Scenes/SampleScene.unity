@@ -11162,6 +11162,10 @@ MonoBehaviour:
   shootTime: 0.3
   force: 1
   playerPool: {fileID: 1167882403}
+  ozelaktifmi: 0
+  "refs\xFCre": 10
+  gecensure: 0
+  playerss: {fileID: 1313932098}
 --- !u!1 &1293208647
 GameObject:
   m_ObjectHideFlags: 0

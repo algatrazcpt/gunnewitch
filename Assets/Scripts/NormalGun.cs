@@ -13,6 +13,10 @@ public class NormalGun : MonoBehaviour
     public float force;
     float nextShootTime;
     public PlayerPool playerPool;
+    public bool ozelaktifmi;
+    public float refsüre = 10f;
+    public float gecensure = 0f;
+    public GameObject playerss;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +26,27 @@ public class NormalGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var bullet = playerPool.GetObjectFromPool().GetComponent<BulletDamage>();
+        if (ozelaktifmi == true)
+        {
+            
+            bullet.attackDamage = 15;
+            playerss.GetComponent<PlayerMovment>().moveSpeed = 6f;
+            gecensure += Time.deltaTime;
+            if (gecensure > refsüre)
+            {
+                ozelaktifmi = false;
+                gecensure = 0f;
+                bullet.attackDamage = 10;
+                playerss.GetComponent<PlayerMovment>().moveSpeed = 4f;
+            }
 
+        }
         //Input.GetMouseButton(0)
         if (Input.GetMouseButton(0))
         {
 
+  
             mausePos = maincam.ScreenToWorldPoint(Input.mousePosition);
             if (Time.time > nextShootTime){
 
@@ -36,7 +56,7 @@ public class NormalGun : MonoBehaviour
 
                //GameObject bullet= Instantiate(Gun, ShootPoint.position, ShootPoint.rotation);
                 Vector3 direction = mausePos - ShootPoint.localPosition;
-                playerPool.GetObjectFromPool().GetComponent<BulletDamage>().AttackCreate(ShootPoint.position, mausePos);
+                bullet.AttackCreate(ShootPoint.position, mausePos);
 
 
                 //bullet.GetComponent<Rigidbody2D>().velocity =new Vector2(direction.x, direction.y).normalized* force;
