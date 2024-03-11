@@ -31,19 +31,55 @@ public class PlayerMovment : MonoBehaviour
     public int InteractId = -1;
     public GameObject currentInteractItem;
 
+    public Image healtMaxBarImage;
+    float currentMaxHealtBarCount=0;
     public Animator anims;
 
     bool rageAnim = true;
+
+
+    public void MaxHealtBarEffect(float exp)
+    {
+        Debug.Log(exp);
+        currentMaxHealtBarCount+= exp;
+        healtMaxBarImage.fillAmount=Mathf.Clamp(currentMaxHealtBarCount / LevelBalance.Instance.playerMaxHealthBar, 0, 1);
+      //  Heal
+
+        if(currentMaxHealtBarCount>=LevelBalance.Instance.playerMaxHealthBar)
+        {
+            currentMaxHealtBarCount = 0;
+            Health += LevelBalance.Instance.playerHealtAdd;
+            LevelBalance.Instance.PlayerHealtLevelUp();
+        }
+
+        healtImagCaseMat.SetFloat("_FlashCount", healtMaxBarImage.fillAmount * 5);
+        //healtMaxBarImage.fillAmount
+    }
+
+
 
 
     RangePower rangeSaldýr;
 
     public GameObject Rangeobj;
 
+    [Range(1, 10)]
+    public float healtEffectSpeed;
+    [Range(10, 1)]
+    public float healtEffectSpeedTime;
+    [Range(1, 10)]
+    public float speelEffectSpeed;
+    [Range(10, 1)]
+    public float speelEffectSpeedTime;
+
+
+    public Material healtBarCaseMat;
+    public Material speelBarCaseMat;
+    public Material healtImagCaseMat;
 
     private void Awake()
     {
-        currentHealt = Health;
+        currentHealt = 20;
         currentSpeelCount = 0;
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         HealthUi();
@@ -52,7 +88,7 @@ public class PlayerMovment : MonoBehaviour
     }
 
 
-
+    IEnumerator speel;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +100,10 @@ public class PlayerMovment : MonoBehaviour
         rangeSaldýr = GetComponent<RangePower>();
 
     }
+
+
+
+
 
     void HealthUi()
     {
@@ -79,23 +119,149 @@ public class PlayerMovment : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealt = Mathf.Clamp(currentHealt-damage,0,Health);
-        DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
-        if (damage <= 0)
+        StartCoroutine("HealthShow");
+        if (currentHealt-damage>0)
         {
-            currentPop.DamageCreate(transform.position, damage*-1);
+            if (defHealthTargetValue !=0)
+            {
+                StartCoroutine("HealthEffect");
+            }
+            else
+            {
+                currentHealt = Mathf.Clamp(currentHealt + damage, 0, Health);
+                HealthUi();
+            }
+        }
+        else
+        {
+            currentHealt = Mathf.Clamp(currentHealt + damage, 0, Health);
+            HealthUi();
+            //
+            Debug.Log("GameOver");
+        }
+        
+        
+        DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
+        if (damage > 0)
+        {
+            currentPop.DamageCreate(transform.position, damage);
             currentPop.DamageColor(Color.green);
         }
         else
         {
-            currentPop.DamageCreate(transform.position, damage );
+            currentPop.DamageCreate(transform.position, damage*-1 );
             currentPop.DamageColor(Color.red);
         }
 
         Shake(1,0.1f);
         HealthUi();
-
     }
+    float defHealthTargetValue = 0;
+
+    IEnumerator HealthEffect()
+    {
+        float vValue = (healtEffectSpeed / Health) * 100;
+        if (defHealthTargetValue > 0)
+        {
+            while (defHealthTargetValue != 0)
+            {
+                defHealthTargetValue -= vValue;
+                currentHealt = Mathf.Clamp(currentHealt + vValue, 0, Health);
+                if (defSpelTargetValue < 0)
+                {
+                    defHealthTargetValue = 0;
+                    StopCoroutine("HealthEffect");
+                    break;
+                }
+                HealthUi();
+                yield return new WaitForSeconds(healtEffectSpeedTime/100);
+            }
+        }
+        else if (defHealthTargetValue < 0)
+        {
+            while (defHealthTargetValue != 0)
+            {
+                defHealthTargetValue += vValue;
+                currentHealt = Mathf.Clamp(currentHealt - vValue, 0, Health);
+                if (defHealthTargetValue > 0)
+                {
+                    defHealthTargetValue = 0;
+                    StopCoroutine("HealthEffect");
+                    break;
+                }
+                HealthUi();
+                yield return new WaitForSeconds(healtEffectSpeedTime/100);
+            }
+        }
+    }
+
+   IEnumerator SpeelShow()
+    {
+        speelBarCaseMat.SetFloat("_FlashCount", 5f);
+        yield return new WaitForSeconds(2f);
+        speelBarCaseMat.SetFloat("_FlashCount", 0f);
+    }
+    IEnumerator HealthShow()
+    {
+        healtBarCaseMat.SetFloat("_FlashCount", 7f);
+        yield return new WaitForSeconds(2f);
+        healtBarCaseMat.SetFloat("_FlashCount", 0f);
+    }
+
+
+
+    //IEnumerator SpeelEffect
+    IEnumerator SpeelEffect()
+    {
+        float vValue = (speelEffectSpeed / speelCount) * 100;
+        //defSpelTargetValue;
+        if (defSpelTargetValue > 0)
+        {
+            while (defSpelTargetValue != 0)
+            {
+                defSpelTargetValue -= vValue;
+                currentSpeelCount = Mathf.Clamp(currentSpeelCount + vValue, 0, speelCount);
+                if (defSpelTargetValue<0)
+                {
+                    defSpelTargetValue = 0;
+                    StopCoroutine("SpeelEffect");
+                    break;
+                }
+                SpeelUi();
+                yield return new WaitForSeconds(speelEffectSpeedTime/ 100);
+            }
+        }
+        else if (defSpelTargetValue < 0)
+        {
+            while (defSpelTargetValue != 0)
+            {
+                defSpelTargetValue += vValue;
+                currentSpeelCount = Mathf.Clamp(currentSpeelCount - vValue, 0, speelCount);
+                if (defSpelTargetValue > 0)
+                {
+                    defSpelTargetValue = 0;
+                    StopCoroutine("SpeelEffect");
+                    break;
+                }
+                SpeelUi();
+                yield return new WaitForSeconds(speelEffectSpeedTime/ 100);
+            }
+        }
+    }
+
+    void SpeelEffect(bool effectState)
+    {
+        if (effectState)
+        {
+            speelBarCaseMat.SetFloat("_FlashCount", 5);
+        }
+        else
+        {
+            speelBarCaseMat.SetFloat("_FlashCount", 0);
+        }
+    }
+
+
 
     IEnumerator WitchAnim()
     {
@@ -127,7 +293,7 @@ public class PlayerMovment : MonoBehaviour
 
 
     }
-
+    float defSpelTargetValue = 0;
     // Update is called once per frame
     void Update()
     {
@@ -167,7 +333,6 @@ public class PlayerMovment : MonoBehaviour
             }
 
 
-
         }
     }
     private void FixedUpdate()
@@ -199,12 +364,25 @@ public class PlayerMovment : MonoBehaviour
             InteractItem(InteractId);
         }
     }
-
+    void TakeSpeelDamageFast(float damage)
+    {
+        currentSpeelCount = Mathf.Clamp(currentSpeelCount + damage, 0, speelCount);
+        SpeelUi();
+    }
 
 
     public void TakeSpeelDamage(float damage)
     {
-        currentSpeelCount = Mathf.Clamp(currentSpeelCount - damage, 0, speelCount);
+        StartCoroutine("SpeelShow");
+        Debug.Log(damage);
+        if(defSpelTargetValue!=0)
+        {
+            TakeSpeelDamageFast(defSpelTargetValue);
+        }
+        defSpelTargetValue = damage;
+        StartCoroutine("SpeelEffect");
+
+        //currentSpeelCount = Mathf.Clamp(currentSpeelCount - damage, 0, speelCount);
         DamagePop currentPop = popController.GetObjectFromPool().GetComponent<DamagePop>();
         if (damage <= 0)
         {
@@ -367,11 +545,11 @@ public class PlayerMovment : MonoBehaviour
                 float cSpeel= currentInteractItem.GetComponent<ItemControl>().speel;
                 if(cHealth>0)
                 {
-                    TakeDamage(-cHealth);
+                    TakeDamage(cHealth);
                 }
                 if(cSpeel>0)
                 {
-                    TakeSpeelDamage(-cSpeel);
+                    TakeSpeelDamage(cSpeel);
                 }
                 currentInteractItem.GetComponent<ItemControl>().Delete();
                 InteractId = -1;

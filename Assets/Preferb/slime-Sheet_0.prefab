@@ -176,7 +176,7 @@ MonoBehaviour:
   attackTime: 1
   enemySpeed: 5
   attackRange: 0.3
-  damage: 10
+  damage: -10
   health: 10
   enemySpeelExp: 1
   enemyDeathExp: 1

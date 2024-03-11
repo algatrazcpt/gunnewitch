@@ -173,11 +173,11 @@ MonoBehaviour:
   meleeParticle: {fileID: 4220269529653557748}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   attackTime: 5
-  enemySpeed: 0
+  enemySpeed: 3
   attackRange: 1
-  damage: 10
+  damage: -10
   health: 50
   enemySpeelExp: 1
   enemyDeathExp: 1

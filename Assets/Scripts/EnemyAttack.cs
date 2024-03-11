@@ -46,7 +46,7 @@ public class EnemyAttack : MonoBehaviour
         acceleration = accelerationD;
         maxSpeed = maxSpeedD;
         //
-        attackDamage += LevelBalance.Instance.damageUpBalance;
+        attackDamage -= LevelBalance.Instance.damageUpBalance;
         attackMoveSpeed += LevelBalance.Instance.attackMoveSpeed;
         maxSpeed+= LevelBalance.Instance.attackMoveSpeed; 
         currentSpeed = initialSpeed;

@@ -57,7 +57,7 @@ public class BasicEnemyMovement : MonoBehaviour
         enemyDeathExp = enemyDeathExpD;
         canAttack = true;
         //Balance System;
-        damage += levelBalance.damageUpBalance;
+        damage -= levelBalance.damageUpBalance;
         enemySpeed = enemySpeedD + levelBalance.enemyMovementUpBalance;
         health += levelBalance.healtUpBalance;
         enemyDeathExp += levelBalance.enemyExpUpBalance;
@@ -277,17 +277,20 @@ public class BasicEnemyMovement : MonoBehaviour
         transform.localScale = Vector2.one;
         if(currentEnemyType==enemyType.Range)
         {
+            playerTransform.gameObject.GetComponent<PlayerMovment>().MaxHealtBarEffect(enemyDeathExp);
             levelBalance.currentRangeEnemy--;
             gameObject.SetActive(false);
             ResetSystem();
         }
        else if(currentEnemyType==enemyType.Meele)
         {
+            playerTransform.gameObject.GetComponent<PlayerMovment>().MaxHealtBarEffect(enemyDeathExp);
             gameObject.SetActive(false);
             ResetSystem();
         }
         else
         {
+            playerTransform.gameObject.GetComponent<PlayerMovment>().MaxHealtBarEffect(enemyDeathExp);
             playerAnim.SetTrigger("Explode");
             StartCoroutine("EnemyExplodeColorEffect");
         }

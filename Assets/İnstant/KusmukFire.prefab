@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b652fc8943a7ae4087fb1fa20345982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 1
+  attackDamage: -1
   attackMoveSpeed: 7
   attackAnim: {fileID: 3019934903436939922}
   boomEffect: {fileID: 4821169888487217757}

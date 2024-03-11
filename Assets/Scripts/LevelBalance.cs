@@ -7,6 +7,12 @@ public class LevelBalance : MonoBehaviour
     // Start is called before the first frame update
     public static LevelBalance Instance;
 
+    public float playerHealtAdd = 100;
+    public float playerMaxHealthBar = 50;
+    public float playerMaxHealtBarPerLevel = 2f;
+    public float playerHealtAddPerBar = 1.5f;
+    float playerMaxHealthBarL;
+
     public int currentEnemy=0;
     public int currentRangeEnemy;
     public int maxEnemyCount = 50;
@@ -53,16 +59,22 @@ public class LevelBalance : MonoBehaviour
         attackMoveSpeedC = attackMoveSpeed;
         enemyMovementUpBalanceC = enemyMovementUpBalance;
         timeBalanceC = timeBalance;
+        playerMaxHealthBarL = playerMaxHealthBar;
     }
     public void LevelBalanceUp()
     {
         healtUpBalance += healtUpBalanceC;
-        damageUpBalance += damageUpBalanceC;
+        damageUpBalance -= damageUpBalanceC;
         enemyExpUpBalance += enemyExpUpBalanceC;
         iksirUpBalance += iksirUpBalanceC;
         enemyMovementUpBalance += enemyMovementUpBalanceC;
         attackMoveSpeed += attackMoveSpeedC;
         Debug.Log("LevelBalance");
+    }
+    public void PlayerHealtLevelUp()
+    {
+        playerMaxHealthBar = playerMaxHealthBarL * playerMaxHealtBarPerLevel;
+        playerHealtAdd = playerHealtAdd / playerHealtAddPerBar;
     }
     public void TimeBalanceUp()
     {
